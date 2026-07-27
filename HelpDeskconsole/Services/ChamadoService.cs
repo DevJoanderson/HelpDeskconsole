@@ -26,6 +26,11 @@ namespace HelpDeskconsole.Services
             return true;
         }
 
+        public List<Chamado> ListaChamado()
+        {
+            return _repository.Listar();
+        }
+
     }
 
 
