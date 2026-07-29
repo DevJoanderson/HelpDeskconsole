@@ -31,6 +31,10 @@ namespace HelpDeskconsole.Services
             return _repository.Listar();
         }
 
+        public Chamado? BuscaPorId (int id)
+        {
+            return _repository.BuscarPorId(id);
+        }
     }
 
 
