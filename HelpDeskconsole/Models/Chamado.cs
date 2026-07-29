@@ -1,4 +1,5 @@
 ﻿using HelpDeskconsole.Enums;
+using HelpDeskconsole.Models;
 
 
 namespace HelpDeskconsole.Models
@@ -33,5 +34,6 @@ namespace HelpDeskconsole.Models
             DataAbertura = DateTime.Now;
         }
 
+       
     }
 }

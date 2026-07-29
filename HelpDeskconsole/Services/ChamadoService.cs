@@ -11,6 +11,7 @@ namespace HelpDeskconsole.Services
 
         public void AbrirChamado(Chamado chamado)
         {
+            chamado.Id = _repository.GerarId();
             _repository.Cadastrar(chamado);
         }
 

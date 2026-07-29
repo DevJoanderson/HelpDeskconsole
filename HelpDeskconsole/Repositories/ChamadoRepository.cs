@@ -30,6 +30,12 @@ namespace HelpDeskconsole.Repositories
             return null; 
         }
 
+        public int GerarId()
+        {
+            return _chamados.Count + 1;
+        
+        }
+
     }
 
 }
