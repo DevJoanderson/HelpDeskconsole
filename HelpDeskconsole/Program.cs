@@ -3,16 +3,9 @@ using HelpDeskconsole.Enums;
 using HelpDeskconsole.Services;
 using System.Net.Security;
 
-var chamado = new Chamado(
 
-    "O computador nao liga",
-    "computador do finaceiro",
-    "Finaceiro",
-    "usuario@email.com",
-    PrioridadeChamado.Alta
-
-    );
 ChamadoService service = new();
+PrioridadeChamado prioridade;
 
 bool executando = true;
 
@@ -35,10 +28,32 @@ while (executando)
     }
     else if (opcao == "1")
     {
-        Console.WriteLine("Título");
+        Console.WriteLine("Título: ");
         string titulo = Console.ReadLine()!;
+        Console.Write("Descrição: ");
+        string descricao = Console.ReadLine()!;
+        Console.Write("Departamento: ");
+        string departamento = Console.ReadLine()!;
+        Console.Write("E-mail:");2
+        string email = Console.ReadLine()!;
+        
+        Chamado chamado = new Chamado(
+            titulo,
+            descricao,
+            departamento,
+            email,
+            prioridade
+            );
 
-        Console.WriteLine($"Título informado: {titulo}"); 
+        Console.WriteLine("Escolha a prioridade:");
+        Console.WriteLine("1 - Baixa");
+        Console.WriteLine("2 - Média");
+        Console.WriteLine("3 - Alta");
+        Console.WriteLine("4 - Urgente");
+
+        int opcaoPrioridade = int.Parse(Console.ReadLine()!);
+        service.AbrirChamado(chamado);
+
     }
     else if(opcao == "2")
     {
@@ -61,9 +76,3 @@ while (executando)
         Console.WriteLine($"Chamado Fechado");
     }
 }
-
-
-//service.BuscaPorId(1);
-Console.WriteLine(chamado.Titulo);
-Console.WriteLine(chamado.Status);
-Console.WriteLine(chamado.DataAbertura);
