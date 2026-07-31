@@ -1,6 +1,7 @@
 ﻿using HelpDeskconsole.Models;
 using HelpDeskconsole.Enums;
 using HelpDeskconsole.Services;
+using System.Net.Security;
 
 var chamado = new Chamado(
 
@@ -31,6 +32,33 @@ while (executando)
         executando = false;
         Console.WriteLine("Programa encerrado.");
 
+    }
+    else if (opcao == "1")
+    {
+        Console.WriteLine("Título");
+        string titulo = Console.ReadLine()!;
+
+        Console.WriteLine($"Título informado: {titulo}"); 
+    }
+    else if(opcao == "2")
+    {
+        Console.WriteLine("Lista o Chamado");
+        var chamados = service.ListaChamado();
+        Console.WriteLine($"Chamado Listado: {chamados}");
+
+    }
+    else if (opcao == "3")
+    {
+        Console.WriteLine("Busca Chamado Pelo Id");
+        int Id = int.Parse(Console.ReadLine()!);
+
+        Console.WriteLine($"Chamado Recebido: {Id}");
+    }
+    else if (opcao == "4")
+    {
+        Console.WriteLine("Fechar Chamado");
+        int id = int.Parse(Console.ReadLine()!);
+        Console.WriteLine($"Chamado Fechado");
     }
 }
 
