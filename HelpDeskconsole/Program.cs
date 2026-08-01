@@ -3,9 +3,7 @@ using HelpDeskconsole.Enums;
 using HelpDeskconsole.Services;
 using System.Net.Security;
 
-
 ChamadoService service = new();
-PrioridadeChamado prioridade;
 
 bool executando = true;
 
@@ -34,7 +32,7 @@ while (executando)
         string descricao = Console.ReadLine()!;
         Console.Write("Departamento: ");
         string departamento = Console.ReadLine()!;
-        Console.Write("E-mail:");2
+        Console.Write("E-mail:");
         string email = Console.ReadLine()!;
         
         Chamado chamado = new Chamado(
@@ -52,6 +50,29 @@ while (executando)
         Console.WriteLine("4 - Urgente");
 
         int opcaoPrioridade = int.Parse(Console.ReadLine()!);
+        PrioridadeChamado prioridade;
+
+        switch (opcaoPrioridade)
+        {
+            case 1:
+                prioridade = PrioridadeChamado.Baixa;
+                break;
+            case 2:
+                prioridade = PrioridadeChamado.Media;
+                break;
+            case 3:
+                prioridade = PrioridadeChamado.Alta;
+                break;
+            case 4:
+                prioridade = PrioridadeChamado.Urgente;
+                break;
+            default:
+                prioridade = PrioridadeChamado.Baixa;
+                break;
+
+        }
+
+
         service.AbrirChamado(chamado);
 
     }
