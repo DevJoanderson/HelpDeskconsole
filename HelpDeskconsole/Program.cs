@@ -34,15 +34,7 @@ while (executando)
         string departamento = Console.ReadLine()!;
         Console.Write("E-mail:");
         string email = Console.ReadLine()!;
-        
-        Chamado chamado = new Chamado(
-            titulo,
-            descricao,
-            departamento,
-            email,
-            prioridade
-            );
-
+      
         Console.WriteLine("Escolha a prioridade:");
         Console.WriteLine("1 - Baixa");
         Console.WriteLine("2 - Média");
@@ -72,15 +64,38 @@ while (executando)
 
         }
 
+        Chamado chamado = new Chamado(
+            titulo,
+            descricao,
+            departamento,
+            email,
+            prioridade
+            );
+
 
         service.AbrirChamado(chamado);
+        Console.WriteLine($"Chamado criado com sucesso! ID: {chamado.Id}"); 
 
     }
     else if(opcao == "2")
     {
-        Console.WriteLine("Lista o Chamado");
+
         var chamados = service.ListaChamado();
-        Console.WriteLine($"Chamado Listado: {chamados}");
+
+        if (chamados == null || chamados.Count == 0)
+        {
+            Console.WriteLine("Nenhum chamado cadastrado.");
+            continue;
+        }
+
+        foreach (var chamado in chamados)
+        {
+            Console.WriteLine($"ID: {chamado.Id}");
+            Console.WriteLine($"Título: {chamado.Titulo}");
+            Console.WriteLine($"Prioridade: {chamado.Prioridade}");
+            Console.WriteLine($"Status: {chamado.Status}");
+            Console.WriteLine($"------------------------------");
+        } 
 
     }
     else if (opcao == "3")
