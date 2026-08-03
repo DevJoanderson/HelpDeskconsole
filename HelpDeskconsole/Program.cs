@@ -103,6 +103,25 @@ while (executando)
         Console.WriteLine("Busca Chamado Pelo Id");
         int Id = int.Parse(Console.ReadLine()!);
 
+        var chamadoEncontrado = service.BuscaPorId(Id);
+
+        if (chamadoEncontrado == null)
+        {
+            Console.WriteLine("Chamado não encontrado.");
+        }
+        else
+        {
+
+            Console.WriteLine($"ID: {chamadoEncontrado.Id}");
+            Console.WriteLine($"Títilo: {chamadoEncontrado.Titulo}");
+            Console.WriteLine($"Descrição: {chamadoEncontrado.Descricao}");
+            Console.WriteLine($"EmailSolicitante: {chamadoEncontrado.EmailSolicitante}");
+            Console.WriteLine($"Prioridade: {chamadoEncontrado.Prioridade}");
+            Console.WriteLine($"Status: {chamadoEncontrado.Status}");
+           
+
+        }
+
         Console.WriteLine($"Chamado Recebido: {Id}");
     }
     else if (opcao == "4")
