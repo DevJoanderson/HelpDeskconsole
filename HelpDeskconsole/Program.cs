@@ -34,7 +34,7 @@ while (executando)
         string departamento = Console.ReadLine()!;
         Console.Write("E-mail:");
         string email = Console.ReadLine()!;
-      
+
         Console.WriteLine("Escolha a prioridade:");
         Console.WriteLine("1 - Baixa");
         Console.WriteLine("2 - Média");
@@ -74,10 +74,10 @@ while (executando)
 
 
         service.AbrirChamado(chamado);
-        Console.WriteLine($"Chamado criado com sucesso! ID: {chamado.Id}"); 
+        Console.WriteLine($"Chamado criado com sucesso! ID: {chamado.Id}");
 
     }
-    else if(opcao == "2")
+    else if (opcao == "2")
     {
 
         var chamados = service.ListaChamado();
@@ -95,7 +95,7 @@ while (executando)
             Console.WriteLine($"Prioridade: {chamado.Prioridade}");
             Console.WriteLine($"Status: {chamado.Status}");
             Console.WriteLine($"------------------------------");
-        } 
+        }
 
     }
     else if (opcao == "3")
@@ -118,7 +118,7 @@ while (executando)
             Console.WriteLine($"EmailSolicitante: {chamadoEncontrado.EmailSolicitante}");
             Console.WriteLine($"Prioridade: {chamadoEncontrado.Prioridade}");
             Console.WriteLine($"Status: {chamadoEncontrado.Status}");
-           
+
 
         }
 
@@ -126,8 +126,18 @@ while (executando)
     }
     else if (opcao == "4")
     {
-        Console.WriteLine("Fechar Chamado");
+        Console.WriteLine("Informe o ID do chamado: ");
         int id = int.Parse(Console.ReadLine()!);
-        Console.WriteLine($"Chamado Fechado");
+
+        bool fechado = service.FecharChamado(id);
+
+        if (!fechado)
+        {
+            Console.WriteLine("Chamado não encontrado. ");
+        }
+        else
+        {
+            Console.WriteLine($"Chamado {id} fechado com sucesso.");
+        }
     }
 }
