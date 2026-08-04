@@ -1,7 +1,6 @@
 ﻿using HelpDeskconsole.Models;
 using HelpDeskconsole.Enums;
 using HelpDeskconsole.Services;
-using System.Net.Security;
 
 ChamadoService service = new();
 
@@ -31,7 +30,7 @@ while (executando)
 
         if (string.IsNullOrWhiteSpace(titulo))
         {
-            Console.WriteLine("O título é obrigatório. Por favor, insira um titulo válido.");
+            Console.WriteLine("O título é obrigatório. Insira um titulo válido.");
             continue;
         }
 
@@ -39,22 +38,22 @@ while (executando)
         string descricao = Console.ReadLine()!;
         if (string.IsNullOrWhiteSpace(descricao))
         {
-            Console.WriteLine("A descrição é obrigatoria. Por favor, insira uma descrição válida.");
+            Console.WriteLine("A descrição é obrigatoria. Insira uma descrição válida.");
             continue;
         }
         Console.Write("Departamento: ");
         string departamento = Console.ReadLine()!;
         if (string.IsNullOrWhiteSpace(departamento))
         {
-            Console.WriteLine("O depatamento é obrigatorio, Por favor insira um departamento.");
+            Console.WriteLine("O depatamento é obrigatorio, Insira um departamento válido.");
             continue;
 
         }
         Console.Write("E-mail:");
         string email = Console.ReadLine()!;
-        if (string.IsNullOrWhiteSpace(email)) 
+        if (string.IsNullOrWhiteSpace(email))
         {
-            Console.WriteLine("O e-mail é obrigatorio, Por favor insira um e-mail.");
+            Console.WriteLine("O e-mail é obrigatorio, Insira um e-mail válido.");
             continue;
         }
 
@@ -63,19 +62,30 @@ while (executando)
             Console.WriteLine("E-mail inválido, enforme um e-mail válido");
             continue;
         }
+
         Console.WriteLine("Escolha a prioridade:");
         Console.WriteLine("1 - Baixa");
         Console.WriteLine("2 - Média");
         Console.WriteLine("3 - Alta");
         Console.WriteLine("4 - Urgente");
 
-        int opcaoPrioridade = int.Parse(Console.ReadLine()!);
+        bool prioridadeValida = int.TryParse(
+            Console.ReadLine(),
+            out int opcaoPrioridade
+            );
 
-        if (opcaoPrioridade< 1 || opcaoPrioridade > 4)
+        if (!prioridadeValida)
+        {
+            Console.WriteLine("Digite um número válido para a prioridade.");
+            continue;
+        }
+
+        if (opcaoPrioridade < 1 || opcaoPrioridade > 4)
         {
             Console.WriteLine("Prioridade inválida. Escolha uma opção de 1 a 4.");
             continue;
         }
+
         PrioridadeChamado prioridade;
 
         switch (opcaoPrioridade)
@@ -95,7 +105,6 @@ while (executando)
             default:
                 prioridade = PrioridadeChamado.Baixa;
                 break;
-
         }
 
         Chamado chamado = new Chamado(
@@ -105,7 +114,6 @@ while (executando)
             email,
             prioridade
             );
-
 
         service.AbrirChamado(chamado);
         Console.WriteLine($"Chamado criado com sucesso! ID: {chamado.Id}");
@@ -135,7 +143,17 @@ while (executando)
     else if (opcao == "3")
     {
         Console.WriteLine("Busca Chamado Pelo Id");
-        int Id = int.Parse(Console.ReadLine()!);
+        bool IdValido = int.TryParse(
+            Console.ReadLine(),
+            out int Id
+
+            );
+
+        if (!IdValido)
+        {
+            Console.WriteLine("Digite um numéro valido para o ID.");
+            continue;
+        }
 
         var chamadoEncontrado = service.BuscaPorId(Id);
 
@@ -149,10 +167,9 @@ while (executando)
             Console.WriteLine($"ID: {chamadoEncontrado.Id}");
             Console.WriteLine($"Títilo: {chamadoEncontrado.Titulo}");
             Console.WriteLine($"Descrição: {chamadoEncontrado.Descricao}");
-            Console.WriteLine($"EmailSolicitante: {chamadoEncontrado.EmailSolicitante}");
+            Console.WriteLine($"Email: {chamadoEncontrado.Email}");
             Console.WriteLine($"Prioridade: {chamadoEncontrado.Prioridade}");
             Console.WriteLine($"Status: {chamadoEncontrado.Status}");
-
 
         }
 
@@ -161,7 +178,15 @@ while (executando)
     else if (opcao == "4")
     {
         Console.WriteLine("Informe o ID do chamado: ");
-        int id = int.Parse(Console.ReadLine()!);
+        bool idValido = int.TryParse(
+            Console.ReadLine(),
+            out int id
+            );
+        if (!idValido)
+        {
+            Console.WriteLine("Informe o ID do chamado: ");
+            continue;
+        }
 
         bool fechado = service.FecharChamado(id);
 

@@ -1,6 +1,4 @@
 ﻿using HelpDeskconsole.Enums;
-using HelpDeskconsole.Models;
-
 
 namespace HelpDeskconsole.Models
 {
@@ -10,7 +8,7 @@ namespace HelpDeskconsole.Models
           public string Titulo { get; set; }
           public string Descricao { get; set; }
           public string Departamento { get; set; }
-          public string EmailSolicitante { get; set; }
+          public string Email { get; set; }
           public PrioridadeChamado Prioridade { get; set; }
           public StatusChamado Status  { get; set; }
           public  DateTime DataAbertura { get; set; }
@@ -21,13 +19,13 @@ namespace HelpDeskconsole.Models
                string titulo,
                string descricao,
                string departamento,
-               string emailSolicitante,
+               string email,
                PrioridadeChamado prioridade)
         {
             Titulo = titulo;
             Descricao = descricao;
             Departamento = departamento;
-            EmailSolicitante = emailSolicitante;
+            Email = email;
             Prioridade = prioridade;
 
             Status = StatusChamado.Aberto;
