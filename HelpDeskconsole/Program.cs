@@ -28,13 +28,35 @@ while (executando)
     {
         Console.WriteLine("Título: ");
         string titulo = Console.ReadLine()!;
+
+        if (string.IsNullOrWhiteSpace(titulo))
+        {
+            Console.WriteLine("O título é obrigatório. Por favor, insira um titulo válido.");
+            continue;
+        }
+
         Console.Write("Descrição: ");
         string descricao = Console.ReadLine()!;
+        if (string.IsNullOrWhiteSpace(descricao))
+        {
+            Console.WriteLine("A descrição é obrigatoria. Por favor, insira uma descrição válida.");
+            continue;
+        }
         Console.Write("Departamento: ");
         string departamento = Console.ReadLine()!;
+        if (string.IsNullOrWhiteSpace(departamento))
+        {
+            Console.WriteLine("O depatamento é obrigatorio, Por favor insira um departamento.");
+            continue;
+
+        }
         Console.Write("E-mail:");
         string email = Console.ReadLine()!;
-
+        if (string.IsNullOrWhiteSpace(email)) 
+        {
+            Console.WriteLine("O e-mail é obrigatorio, Por favor insira um e-mail.");
+            continue;
+        }
         Console.WriteLine("Escolha a prioridade:");
         Console.WriteLine("1 - Baixa");
         Console.WriteLine("2 - Média");
