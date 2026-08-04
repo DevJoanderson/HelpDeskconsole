@@ -57,6 +57,12 @@ while (executando)
             Console.WriteLine("O e-mail é obrigatorio, Por favor insira um e-mail.");
             continue;
         }
+
+        if (!email.Contains("@") || !email.Contains("."))
+        {
+            Console.WriteLine("E-mail inválido, enforme um e-mail válido");
+            continue;
+        }
         Console.WriteLine("Escolha a prioridade:");
         Console.WriteLine("1 - Baixa");
         Console.WriteLine("2 - Média");
@@ -64,6 +70,12 @@ while (executando)
         Console.WriteLine("4 - Urgente");
 
         int opcaoPrioridade = int.Parse(Console.ReadLine()!);
+
+        if (opcaoPrioridade< 1 || opcaoPrioridade > 4)
+        {
+            Console.WriteLine("Prioridade inválida. Escolha uma opção de 1 a 4.");
+            continue;
+        }
         PrioridadeChamado prioridade;
 
         switch (opcaoPrioridade)
