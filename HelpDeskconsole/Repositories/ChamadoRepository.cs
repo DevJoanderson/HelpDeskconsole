@@ -36,6 +36,11 @@ namespace HelpDeskconsole.Repositories
         
         }
 
+        public bool Excluir(Chamado chamado)
+        {
+            return _chamados.Remove(chamado);
+        }
+
     }
 
 }

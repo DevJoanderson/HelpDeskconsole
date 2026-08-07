@@ -198,5 +198,27 @@ while (executando)
         {
             Console.WriteLine($"Chamado {id} fechado com sucesso.");
         }
+    }else if (opcao == "5")
+    {
+        Console.WriteLine("Informe o Id do chamado que deseja excluir: ");
+        bool idValido = int.TryParse(
+            Console.ReadLine(),
+            out int id
+            );
+        if (!idValido)
+        {
+            Console.WriteLine("Id ínvalido.");
+            continue;
+        }
+        bool chamadoExcluido = service.ExcluirChamado(id);
+
+        if(chamadoExcluido)
+        {
+            Console.WriteLine("Chamado excluido com sucesso.");
+        }
+        else
+        {
+            Console.WriteLine("Chamado não encontrado.");
+        }
     }
 }

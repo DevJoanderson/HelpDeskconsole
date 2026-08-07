@@ -36,6 +36,19 @@ namespace HelpDeskconsole.Services
         {
             return _repository.BuscarPorId(id);
         }
+
+        public bool ExcluirChamado(int id)
+        {
+            var chamado = _repository.BuscarPorId(id);
+
+            if(chamado == null)
+            {
+                return false;
+            }
+                 
+             return _repository.Excluir(chamado);
+            
+        }
     }
 
 

@@ -5,7 +5,7 @@ namespace HelpDeskconsole.Enums
     {
       Aberto,
       EmAndamento,
-      Concluido
+      Excluir,
     }
 
  
