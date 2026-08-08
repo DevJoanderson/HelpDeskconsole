@@ -221,4 +221,106 @@ while (executando)
             Console.WriteLine("Chamado não encontrado.");
         }
     }
+    else if (opcao == "6")
+    {
+        Console.WriteLine("Informe o Id do chamado que deseja atualizar: ");
+
+        bool idValido = int.TryParse(
+            Console.ReadLine(),
+            out int id
+        );
+
+        if (!idValido)
+        {
+            Console.WriteLine("Id inválido.");
+            continue;
+        }
+
+        // Novo título
+        Console.WriteLine("Informe o novo título do chamado: ");
+        string titulo = Console.ReadLine()!;
+
+        // Nova descrição
+        Console.WriteLine("Informe a nova descrição: ");
+        string descricao = Console.ReadLine()!;
+
+        // Nova prioridade
+        Console.WriteLine(
+            "Informe a nova prioridade (1 - Baixa, 2 - Média, 3 - Alta, 4 - Urgente): "
+        );
+
+        bool prioridadeValida = int.TryParse(
+            Console.ReadLine(),
+            out int prioridadeInt
+        );
+
+        if (prioridadeValida == false)
+        {
+            Console.WriteLine("Prioridade inválida.");
+            continue;
+        }
+
+        bool prioridadeExiste = Enum.IsDefined(
+            typeof(PrioridadeChamado),
+            prioridadeInt
+        );
+
+        if (prioridadeExiste == false)
+        {
+            Console.WriteLine("Prioridade inválida.");
+            continue;
+        }
+
+        PrioridadeChamado prioridade =
+            (PrioridadeChamado)prioridadeInt;
+
+        // Novo status
+        Console.WriteLine(
+            "Informe o novo status (1 - Aberto, 2 - Em andamento, 3 - Concluído): "
+        );
+
+        bool statusValido = int.TryParse(
+            Console.ReadLine(),
+            out int statusInt
+        );
+
+        if (statusValido == false)
+        {
+            Console.WriteLine("Status inválido.");
+            continue;
+        }
+
+        bool statusExiste = Enum.IsDefined(
+            typeof(StatusChamado),
+            statusInt
+        );
+
+        if (statusExiste == false)
+        {
+            Console.WriteLine("Status inválido.");
+            continue;
+        }
+
+        StatusChamado status =
+            (StatusChamado)statusInt;
+
+        // Envia os novos dados para o Service
+        bool chamadoAtualizado = service.AtualizarChamado(
+            id,
+            titulo,
+            descricao,
+            prioridade,
+            status
+        );
+
+        // Verifica o resultado
+        if (chamadoAtualizado)
+        {
+            Console.WriteLine("Chamado atualizado com sucesso.");
+        }
+        else
+        {
+            Console.WriteLine("Chamado não encontrado.");
+        }
+    }
 }
